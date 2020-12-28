@@ -3,6 +3,8 @@ import { CdkPipeline, SimpleSynthAction } from '@aws-cdk/pipelines';
 
 import * as s3 from '@aws-cdk/aws-s3';
 
+import * as ecr from '@aws-cdk/aws-ecr';
+
 import * as codepipeline from '@aws-cdk/aws-codepipeline';
 import * as codepipeline_actions from '@aws-cdk/aws-codepipeline-actions';
 
@@ -39,6 +41,10 @@ export class SagemakerTestAppStack extends Stack {
 
     new s3.Bucket(this, 'TestBucket', {
       versioned: true
+    })
+
+    new ecr.Repository(this, 'PythonRepository', {
+      repositoryName: 'PythonImageTestRepository'
     })
   }
 }
