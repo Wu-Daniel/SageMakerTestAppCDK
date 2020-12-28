@@ -1,6 +1,8 @@
 import { Stack, StackProps, Construct, SecretValue } from '@aws-cdk/core';
 import { CdkPipeline, SimpleSynthAction } from '@aws-cdk/pipelines';
 
+import * as s3 from '@aws-cdk/aws-s3';
+
 import * as codepipeline from '@aws-cdk/aws-codepipeline';
 import * as codepipeline_actions from '@aws-cdk/aws-codepipeline-actions';
 
@@ -34,5 +36,9 @@ export class SagemakerTestAppStack extends Stack {
         buildCommand: 'npm run build',
       }),
     });
+
+    new s3.Bucket(this, 'TestBucket', {
+      versioned: true
+    })
   }
 }
