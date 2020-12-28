@@ -44,7 +44,7 @@ export class SagemakerTestAppStack extends Stack {
     })
 
     new ecr.Repository(this, 'PythonRepository', {
-      repositoryName: 'PythonImageTestRepository'
+      repositoryName: 'python-image-test-repository'
     })
   }
 }
