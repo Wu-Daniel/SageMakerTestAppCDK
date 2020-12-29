@@ -21,13 +21,22 @@ export class PythonDockerStack extends Stack {
       webhook: true
     });
 
-    new ecr.Repository(this, 'PythonRepository', {
+    const ecrRepo = new ecr.Repository(this, 'PythonRepository', {
       repositoryName: 'simple-python-image-repository'
     })
 
     const pythonProject = new codebuild.Project(this, 'PythonProject', {
       projectName: 'pythonProject',
-      source: pythonGithubSource
+      source: pythonGithubSource,
+      environment: {
+        buildImage: codebuild.LinuxBuildImage.STANDARD_2_0,
+        privileged:true
+      },
+      environmentVariables: {
+        'ECR_REPO_URI': {
+          value: `${ecrRepo.repositoryUri}`
+        }
+      }
     })
 
   }

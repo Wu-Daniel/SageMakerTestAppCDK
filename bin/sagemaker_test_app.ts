@@ -5,6 +5,7 @@ import { SagemakerTestAppStack } from '../lib/sagemaker_test_app-stack';
 import { PythonDockerStack } from '../lib/python_docker_stack';
 
 const app = new cdk.App();
+
 new SagemakerTestAppStack(app, 'SagemakerTestAppStack', {
     env: {
         account: '752838613337',
